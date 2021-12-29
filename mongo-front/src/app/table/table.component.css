@@ -1,0 +1,15 @@
+table {
+  width: 90%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+th.mat-header-cell {
+  text-align: center;
+}
+
+.add-button{
+  text-align: center;
+  padding: 2rem;
+}
