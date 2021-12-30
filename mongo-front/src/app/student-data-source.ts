@@ -35,15 +35,19 @@ export class StudentDataSource implements DataSource<Student> {
     this.countSubject.complete();
   }
 
-  loadStudents(pageNumber = 0, pageSize = 10) {
+  loadStudents(pageNumber = 0, pageSize = 10, term?: string | undefined) {
     this.loadingSubject.next(true);
-    this.studentService.getStudents({page: pageNumber, size: pageSize})
+    this.studentService.getStudents({page: pageNumber, size: pageSize, term: term})
       .pipe(
         catchError(() => of([])),
         finalize(() => this.loadingSubject.next(false))
       )
       .subscribe((result: Students | any) => {
-          this.studentsSubject.next(result.content);
+          if (term) {
+            this.studentsSubject.next(result.content.filter((student: Student) => student.firstName?.includes(term) || student.lastName?.includes(term)))
+          } else {
+            this.studentsSubject.next(result.content);
+          }
           this.countSubject.next(result.totalElements);
         }
       );

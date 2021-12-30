@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../environments/environment.prod";
 import {Student} from "./student-data-source";
 
@@ -14,8 +14,12 @@ export class StudentService {
   constructor(private http: HttpClient) {
   }
 
-  public getStudents = (request: { size: number; page: number }) => {
-    const params = request;
+  public getStudents = (request: { size: number; page: number, term?: string | undefined }) => {
+    let params = new HttpParams()
+    params = params.append('size', request.size).append('page', request.page)
+    if (request.term) {
+      params = params.append('term', request.term)
+    }
     return this.http.get(this.studentsEndpoint, {params});
   };
 

@@ -13,3 +13,9 @@ th.mat-header-cell {
   text-align: center;
   padding: 2rem;
 }
+
+.search {
+  padding-left: 6rem;
+  display: flex;
+  flex-direction: column
+}

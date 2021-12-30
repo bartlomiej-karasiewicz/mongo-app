@@ -17,6 +17,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   studentDataSource!: StudentDataSource;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   student: Student = {}
+  term: string | undefined = undefined;
 
   constructor(private readonly studentService: StudentService,
               public dialog: MatDialog) {
@@ -85,6 +86,15 @@ export class TableComponent implements OnInit, AfterViewInit {
       isEdit: false
     }
     this.data(dataDialog);
+  }
+
+  public loadFilterStudent() {
+    this.studentDataSource.loadStudents(0, 10, this.term);
+  }
+
+  public clear() {
+    this.term = ''
+    this.studentDataSource.loadStudents();
   }
 
   private data(dataDialog: { student: Student; isEdit: boolean; title: string }) {

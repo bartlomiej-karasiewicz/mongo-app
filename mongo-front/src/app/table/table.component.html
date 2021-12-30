@@ -2,6 +2,25 @@
   <h3>If you want add student please click button</h3>
   <button mat-raised-button (click)="openAddDialog()">Add student</button>
 </div>
+
+<div class="search">
+  <div>
+    <span>Search student:</span>
+  </div>
+  <div>
+    <mat-form-field class="example-full-width" appearance="fill" style="width:20rem">
+      <mat-label>Search student first or last name</mat-label>
+      <input matInput placeholder="Name" [(ngModel)]="term" type="text">
+      <button *ngIf="term" matSuffix mat-icon-button aria-label="Clear" (click)="clear()">
+        <mat-icon>close</mat-icon>
+      </button>
+      <button *ngIf="term" matSuffix mat-icon-button (click)="loadFilterStudent()">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+</div>
+
 <div class="align-content-center">
   <table mat-table [dataSource]="studentDataSource" class="flex">
 

@@ -40,28 +40,7 @@ export class DialogComponent implements OnInit, AfterViewInit {
     this.dialogRef.close()
   }
 
-  // ngAfterViewInit(): void {
-  //     if (this.data.isEdit) {
-  //       this.student.firstName = this.data.student.firstName
-  //       this.student.email = this.data.student.email
-  //       this.student.lastName = this.data.student.lastName
-  //       this.student.id = this.data.student.id
-  //       this.cdRef.detectChanges()
-  //     }
-  // }
-
-  // ngDoCheck(): void {
-  //   if (this.data.isEdit) {
-  //     this.student.firstName = this.data.student.firstName
-  //     this.student.email = this.data.student.email
-  //     this.student.lastName = this.data.student.lastName
-  //     this.student.id = this.data.student.id
-  //     this.cdRef.detectChanges()
-  //   }
-  // }
-
   ngAfterViewInit(): void {
-    console.log(this.data)
     if (this.data.isEdit) {
       this.student.firstName = this.data.student.firstName
       this.student.email = this.data.student.email
